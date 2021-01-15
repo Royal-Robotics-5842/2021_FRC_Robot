@@ -42,6 +42,6 @@ class RobotContainer {
   ExampleCommand m_autonomousCommand;
   XboxController *Controller1;
   XboxController *Controller2;
-  //hi
+  //hi I am Stupid (Teddy)
   void ConfigureButtonBindings();
 };
