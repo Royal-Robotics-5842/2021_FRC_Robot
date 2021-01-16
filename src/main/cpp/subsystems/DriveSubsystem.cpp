@@ -29,6 +29,6 @@ void DriveSubsystem::ResetEncoders() {
 }
 
 
-void TankDriveVolts(double left, double right){
+void DriveSubsystem::TankDriveVolts(double left, double right){
 
 }
