@@ -6,8 +6,8 @@
 #include "subsystems/DriveSubsystem.h"
 
 using namespace frc;
-
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_Drivesubsystem) {
+using namespace std;
+RobotContainer::RobotContainer() : m_autonomousCommand(*&m_subsystem) {
   // Initialize all of your commands and subsystems here
   Controller1 = new XboxController(0);
   Controller2 = new XboxController(1);
@@ -16,10 +16,12 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_Drivesubsystem) {
 
   // Configure the button bindings
   ConfigureButtonBindings();
-
-  m_Drivesubsystem.SetDefaultCommand(frc2::RunCommand(
+  cout<<"Gamer";
+  m_subsystem->SetDefaultCommand(RunCommand(
       [this] {
-        m_Drivesubsystem.TankDriveVolts(Controller1->GetY(frc::GenericHID::kLeftHand), Controller2->GetX(frc::GenericHID::kRightHand));
+        m_subsystem->TankDriveVolts(
+            Controller1->GetY(frc::GenericHID::kLeftHand),
+            Controller2->GetX(frc::GenericHID::kRightHand));
       },
       {&m_Drivesubsystem}));
 }
