@@ -10,9 +10,9 @@ using namespace frc;
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
   // Initialize all of your commands and subsystems here
   Controller1 = new XboxController(0);
-  Controller2 = new XboxController(0);
+  Controller2 = new XboxController(1);
   
-  m_subsystem = new DriveSubsystem();
+ // m_subsystem = new DriveSubsystem();
 
   // Configure the button bindings
   ConfigureButtonBindings();
