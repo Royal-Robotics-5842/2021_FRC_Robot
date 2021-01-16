@@ -28,8 +28,7 @@ void DriveSubsystem::ResetEncoders() {
   m_rightEncoder.Reset();
 }
 
-//printf("I am a nerd");
-void DriveSubsystem::TankDriveVolts(double left, double right)
-{
-int h = left + right;
+
+void TankDriveVolts(double left, double right){
+
 }

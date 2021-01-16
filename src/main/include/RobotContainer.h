@@ -22,6 +22,7 @@
 
 #include <frc2/command/RunCommand.h>
 using namespace frc;
+using namespace frc2;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -39,16 +40,10 @@ class RobotContainer {
 
  private:
   // The robot's subsystems and commands are defined here...
-  DriveSubsystem m_Drivesubsystem;
+  DriveSubsystem m_subsystem;
   ExampleCommand m_autonomousCommand;
   XboxController *Controller1;
   XboxController *Controller2;
   //hi I am Stupid (Teddy)
-
-
-  // frc2::InstantCommand m_driveHalfSpeed{[this] { m_subsystem.SetMaxOutput(0.5); },
-  //                                       {}};
-  // frc2::InstantCommand m_driveFullSpeed{[this] { m_subsystem.SetMaxOutput(1); },
-  //                                       {}};
   void ConfigureButtonBindings();
 };
