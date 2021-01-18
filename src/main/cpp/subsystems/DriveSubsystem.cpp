@@ -30,5 +30,9 @@ void DriveSubsystem::ResetEncoders() {
 
 
 void DriveSubsystem::TankDriveVolts(double left, double right){
-
+  m_left1.Set(left);
+  m_left2.Set(left);
+  m_right1.Set(right);
+  m_right2.Set(right);
+  //Made by Teddy
 }
