@@ -21,8 +21,8 @@ RobotContainer::RobotContainer() : m_autonomousCommand(&m_Drivesubsystem) {
   m_Drivesubsystem.SetDefaultCommand(frc2::RunCommand(
       [this] {
         m_Drivesubsystem.TankDriveVolts(
-            Controller1->GetX(frc::GenericHID::kLeftHand),
-            Controller1->GetX(frc::GenericHID::kRightHand));
+            Controller1->GetY(frc::GenericHID::kLeftHand),
+            Controller1->GetY(frc::GenericHID::kRightHand));
       },
       {&m_Drivesubsystem}));
 }
