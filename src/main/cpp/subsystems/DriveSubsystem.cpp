@@ -16,6 +16,10 @@ DriveSubsystem::DriveSubsystem()
   // Set the distance per pulse for the encoders
   m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
   m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
+  m_left2.SetInverted(false);
+  m_left1.SetInverted(false);
+  m_right1.SetInverted(true);
+  m_right2.SetInverted(true);
 
   ResetEncoders();
 } 
@@ -30,5 +34,8 @@ void DriveSubsystem::ResetEncoders() {
 
 
 void DriveSubsystem::TankDriveVolts(double left, double right){
-
+  m_left1.Set(left);
+  m_left2.Set(left);
+  m_right1.Set(right);
+  m_right2.Set(right);
 }
