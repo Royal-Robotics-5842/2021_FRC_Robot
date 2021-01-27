@@ -4,15 +4,17 @@
 
 #include "subsystems/DriveSubsystem.h"
 using namespace DriveConstants;
+using namespace std;
+using namespace frc;
 
-DriveSubsystem::DriveSubsystem()
- : m_left1{kLeftMotor1Port},
+DriveSubsystem::DriveSubsystem():
+  m_left1{kLeftMotor1Port},
   m_left2{kLeftMotor2Port},
-      m_right1{kRightMotor1Port},
-      m_right2{kRightMotor2Port},
-      m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1]},
-      m_rightEncoder{kRightEncoderPorts[0], kRightEncoderPorts[1]},
-      m_odometry{m_gyro.GetRotation2d()} {
+  m_right1{kRightMotor1Port},
+  m_right2{kRightMotor2Port},
+  m_leftEncoder{kLeftEncoderPorts[11], kLeftEncoderPorts[12]},
+  m_rightEncoder{kRightEncoderPorts[13], kRightEncoderPorts[14]},
+  m_odometry{ahrs->GetRotation2d()} {
   // Set the distance per pulse for the encoders
   m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
   m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
@@ -20,6 +22,15 @@ DriveSubsystem::DriveSubsystem()
   m_left1.SetInverted(false);
   m_right1.SetInverted(true);
   m_right2.SetInverted(true);
+  m_left1.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
+  m_left2.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
+  m_right1.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
+  m_right2.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
+  m_left1.SetSensorPhase(true);
+  m_left2.SetSensorPhase(true);
+  m_right1.SetSensorPhase(true);
+  m_right2.SetSensorPhase(true);
+  ahrs = new AHRS(SPI::Port::kMXP);
 
   ResetEncoders();
 } 
@@ -64,11 +75,11 @@ void DriveSubsystem::SetMaxOutput(double maxOutput) {
 }
 
 units::degree_t DriveSubsystem::GetHeading() const {
-  return m_gyro.GetRotation2d().Degrees();
+  return ahrs->GetRotation2d().Degrees();
 }
 
 double DriveSubsystem::GetTurnRate() {
-  return -m_gyro.GetRate();
+  return -ahrs->GetRate();
 }
 
 frc::Pose2d DriveSubsystem::GetPose() {
@@ -82,5 +93,5 @@ frc::DifferentialDriveWheelSpeeds DriveSubsystem::GetWheelSpeeds() {
 
 void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
   ResetEncoders();
-  m_odometry.ResetPosition(pose, m_gyro.GetRotation2d());
+  m_odometry.ResetPosition(pose, ahrs->GetRotation2d());
 } 

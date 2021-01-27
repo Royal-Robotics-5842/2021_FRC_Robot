@@ -13,6 +13,7 @@
 #include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <units/voltage.h>
+#include <AHRS.h>
 //#include <units/units.h>
 
 
@@ -105,6 +106,7 @@ void TankDrive(double left, double right);
   WPI_TalonFX m_left2;
   WPI_TalonFX m_right1;
   WPI_TalonFX m_right2;
+  AHRS *ahrs;
 
   // The motors on the left side of the drive
   frc::SpeedControllerGroup m_leftMotors{m_left1, m_left2};
@@ -121,9 +123,9 @@ void TankDrive(double left, double right);
   // The right-side drive encoder
   frc::Encoder m_rightEncoder;
 
-  // The gyro sensor
-  frc::ADXRS450_Gyro m_gyro;
-
+  // The gyro sensor SHOULD NOT USE THIS GYRO, use NAVX as called in DriveSubsystem.cpp
+  //frc::ADXRS450_Gyro m_gyro;
+ 
   // Odometry class for tracking robot pose
   frc::DifferentialDriveOdometry m_odometry;
 };
