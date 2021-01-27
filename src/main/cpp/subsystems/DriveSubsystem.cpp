@@ -7,7 +7,7 @@ using namespace DriveConstants;
 
 DriveSubsystem::DriveSubsystem()
  : m_left1{kLeftMotor1Port},
-      m_left2{kLeftMotor2Port},
+  m_left2{kLeftMotor2Port},
       m_right1{kRightMotor1Port},
       m_right2{kRightMotor2Port},
       m_leftEncoder{kLeftEncoderPorts[0], kLeftEncoderPorts[1]},
@@ -16,6 +16,10 @@ DriveSubsystem::DriveSubsystem()
   // Set the distance per pulse for the encoders
   m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
   m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
+  m_left2.SetInverted(false);
+  m_left1.SetInverted(false);
+  m_right1.SetInverted(true);
+  m_right2.SetInverted(true);
 
   ResetEncoders();
 } 
@@ -27,12 +31,19 @@ void DriveSubsystem::ResetEncoders() {
   m_leftEncoder.Reset();
   m_rightEncoder.Reset();
 }
-
-
-void DriveSubsystem::TankDriveVolts(double left, double right){
+void DriveSubsystem::TankDrive(double left, double right){
   m_left1.Set(left);
   m_left2.Set(left);
   m_right1.Set(right);
-  m_right2.Set(right);
-  //Made by Teddy
+  m_right2.Set(right); 
+}
+
+void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right){
+  /*m_left1.Set(left);
+  m_left2.Set(left);
+  m_right1.Set(right);
+  m_right2.Set(right);  //Made by Teddy*/
+  m_leftMotors.SetVoltage(left);
+  m_rightMotors.SetVoltage(-right);
+  m_drive.Feed();
 }
