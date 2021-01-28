@@ -6,6 +6,8 @@
 
 #include <frc2/command/Command.h>
 #include <utility>
+#include "Constants.h"
+#include <units/units.h>
 
 #include "commands/ExampleCommand.h"
 #include "subsystems/DriveSubsystem.h"
@@ -19,6 +21,11 @@
 #include <frc2/command/InstantCommand.h>
 #include <frc2/command/RamseteCommand.h>
 #include <frc2/command/SequentialCommandGroup.h>
+
+#include <frc/Filesystem.h>
+#include <frc/trajectory/TrajectoryUtil.h>
+#include <wpi/Path.h>
+#include <wpi/SmallString.h>
 
 #include <frc2/command/RunCommand.h>
 using namespace frc;

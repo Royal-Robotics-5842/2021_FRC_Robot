@@ -31,7 +31,9 @@ class DriveSubsystem : public frc2::SubsystemBase {
    * Will be called periodically whenever the CommandScheduler runs during
    * simulation.
    */
-  void TankDriveVolts(double left, double right);
+  void TankDriveVolts(units::volt_t left, units::volt_t right);
+  
+  void TankDrive(double left, double right);
 
   void ResetEncoders();
 

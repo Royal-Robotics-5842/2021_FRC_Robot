@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 #pragma once
 
 #include <frc/kinematics/DifferentialDriveKinematics.h>
@@ -25,12 +21,13 @@ constexpr int kRightEncoderPorts[]{2, 3};
 constexpr bool kLeftEncoderReversed = false;
 constexpr bool kRightEncoderReversed = true;
 
-constexpr auto kTrackwidth = 0.69_m;
+constexpr auto kTrackwidth = 1.6734976523022231_m;
 extern const frc::DifferentialDriveKinematics kDriveKinematics;
 
-constexpr int kEncoderCPR = 1024;
+constexpr int kEncoderCPR = 2048;
 constexpr double kWheelDiameterInches = 6;
-constexpr double kEncoderDistancePerPulse =  0.479;
+constexpr double kEncoderDistancePerPulse =  //FIX
+    (kWheelDiameterInches * wpi::math::pi) / static_cast<double>(kEncoderCPR);
 
 // These are example values only - DO NOT USE THESE FOR YOUR OWN ROBOT!
 // These characterization values MUST be determined either experimentally or
@@ -46,8 +43,8 @@ constexpr double kPDriveVel = 8.5;
 }  // namespace DriveConstants
 
 namespace AutoConstants {
-constexpr auto kMaxSpeed = 1_mps;
-constexpr auto kMaxAcceleration = .5_mps_sq;
+constexpr auto kMaxSpeed = 2_mps;
+constexpr auto kMaxAcceleration = 1_mps_sq;
 
 // Reasonable baseline values for a RAMSETE follower in units of meters and
 // seconds
