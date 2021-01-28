@@ -55,7 +55,7 @@ void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right){
   m_right1.Set(right);
   m_right2.Set(right);  //Made by Teddy*/
   m_leftMotors.SetVoltage(left);
-  m_rightMotors.SetVoltage(-right);
+  m_rightMotors.SetVoltage(right);
   m_drive.Feed();
 }
 double DriveSubsystem::GetAverageEncoderDistance() {
