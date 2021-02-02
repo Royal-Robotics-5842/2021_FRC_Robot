@@ -39,8 +39,8 @@ void DriveSubsystem::Periodic() {
   // Implementation of subsystem periodic method goes here.
 }
 void DriveSubsystem::ResetEncoders() {
-  m_leftEncoder.Reset();
-  m_rightEncoder.Reset();
+  m_left1.SetSelectedSensorPosition(0,0,30);
+  m_right1.SetSelectedSensorPosition(0,0,30);
 }
 void DriveSubsystem::TankDrive(double left, double right){
   m_left1.Set(left);
@@ -59,15 +59,15 @@ void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right){
   m_drive.Feed();
 }
 double DriveSubsystem::GetAverageEncoderDistance() {
-  return (m_leftEncoder.GetDistance() + m_rightEncoder.GetDistance())/2;
+  return (m_left1.GetSelectedSensorPosition() + m_right1.GetSelectedSensorPosition())/2;
 }
 
-frc::Encoder& DriveSubsystem::GetLeftEncoder() {
-  return m_leftEncoder;
+double DriveSubsystem::GetLeftEncoder() {
+  return m_left1.GetSelectedSensorPosition();
 }
 
-frc::Encoder& DriveSubsystem::GetRightEncoder() {
-  return m_rightEncoder;
+double DriveSubsystem::GetRightEncoder() {
+  return m_right1.GetSelectedSensorPosition();
 }
 
 void DriveSubsystem::SetMaxOutput(double maxOutput) {

@@ -49,14 +49,14 @@ void TankDrive(double left, double right);
    *
    * @return the left drive encoder
    */
-  frc::Encoder& GetLeftEncoder();
+  double GetLeftEncoder();
 
   /**
    * Gets the right drive encoder.
    *
    * @return the right drive encoder
    */
-  frc::Encoder& GetRightEncoder();
+  double GetRightEncoder();
 
   /**
    * Sets the max output of the drive.  Useful for scaling the drive to drive
