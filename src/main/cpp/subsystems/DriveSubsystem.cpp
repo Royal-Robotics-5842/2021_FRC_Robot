@@ -36,6 +36,9 @@ DriveSubsystem::DriveSubsystem():
 } 
 
 void DriveSubsystem::Periodic() {
+  m_odometry.Update(ahrs.GetRotation2d(),
+                    units::meter_t(m_left1.GetSelectedSensorPosition()),
+                    units::meter_t(m_right1.GetSelectedSensorPosition()));
   // Implementation of subsystem periodic method goes here.
 }
 void DriveSubsystem::ResetEncoders() {
