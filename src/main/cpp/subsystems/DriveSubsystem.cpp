@@ -11,13 +11,13 @@ DriveSubsystem::DriveSubsystem():
   m_left1{kLeftMotor1Port},
   m_left2{kLeftMotor2Port},
   m_right1{kRightMotor1Port},
-  m_right2{kRightMotor2Port},
-  m_leftEncoder{kLeftEncoderPorts[11], kLeftEncoderPorts[12]},
-  m_rightEncoder{kRightEncoderPorts[13], kRightEncoderPorts[14]},
-  m_odometry{ahrs->GetRotation2d()} {
+  m_right2{kRightMotor2Port}, ahrs{frc::SPI::Port::kMXP},
+  //m_leftEncoder{kLeftEncoderPorts[11], kLeftEncoderPorts[12]},
+ // m_rightEncoder{kRightEncoderPorts[13], kRightEncoderPorts[14]},
+  m_odometry{ahrs.GetRotation2d()} {
   // Set the distance per pulse for the encoders
-  m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
-  m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
+  //m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
+ // m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
   m_left2.SetInverted(false);
   m_left1.SetInverted(false);
   m_right1.SetInverted(true);
@@ -30,7 +30,7 @@ DriveSubsystem::DriveSubsystem():
   m_left2.SetSensorPhase(true);
   m_right1.SetSensorPhase(true);
   m_right2.SetSensorPhase(true);
-  ahrs = new AHRS(SPI::Port::kMXP);
+  //ahrs = new AHRS(SPI::Port::kMXP);
 
   ResetEncoders();
 } 
@@ -75,11 +75,11 @@ void DriveSubsystem::SetMaxOutput(double maxOutput) {
 }
 
 units::degree_t DriveSubsystem::GetHeading() const {
-  return ahrs->GetRotation2d().Degrees();
+  return ahrs.GetRotation2d().Degrees();
 }
 
 double DriveSubsystem::GetTurnRate() {
-  return -ahrs->GetRate();
+  return -ahrs.GetRate();
 }
 
 frc::Pose2d DriveSubsystem::GetPose() {
@@ -87,11 +87,11 @@ frc::Pose2d DriveSubsystem::GetPose() {
 }
 
 frc::DifferentialDriveWheelSpeeds DriveSubsystem::GetWheelSpeeds() {
-  return {units::meters_per_second_t(m_leftEncoder.GetRate()),
-          units::meters_per_second_t(m_rightEncoder.GetRate())};
+  return {units::meters_per_second_t(m_left1.GetSelectedSensorVelocity()),
+          units::meters_per_second_t(m_left1.GetSelectedSensorVelocity())};
 }
 
 void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
   ResetEncoders();
-  m_odometry.ResetPosition(pose, ahrs->GetRotation2d());
+  m_odometry.ResetPosition(pose, ahrs.GetRotation2d());
 } 

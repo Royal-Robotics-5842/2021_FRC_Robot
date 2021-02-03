@@ -6,7 +6,7 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/ADXRS450_Gyro.h>
-#include <frc/Encoder.h>
+//#include <frc/Encoder.h>
 #include <ctre/Phoenix.h>
 #include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
@@ -106,7 +106,7 @@ void TankDrive(double left, double right);
   WPI_TalonFX m_left2;
   WPI_TalonFX m_right1;
   WPI_TalonFX m_right2;
-  AHRS *ahrs;
+  AHRS ahrs;
 
   // The motors on the left side of the drive
   frc::SpeedControllerGroup m_leftMotors{m_left1, m_left2};
@@ -118,10 +118,10 @@ void TankDrive(double left, double right);
   frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
 
   // The left-side drive encoder
-  frc::Encoder m_leftEncoder;
+  //frc::Encoder m_leftEncoder;
 
   // The right-side drive encoder
-  frc::Encoder m_rightEncoder;
+  //frc::Encoder m_rightEncoder;
 
   // The gyro sensor SHOULD NOT USE THIS GYRO, use NAVX as called in DriveSubsystem.cpp
   //frc::ADXRS450_Gyro m_gyro;
