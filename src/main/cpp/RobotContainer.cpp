@@ -50,7 +50,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 wpi::SmallString<64> deployDirectory;
 frc::filesystem::GetDeployDirectory(deployDirectory);
 wpi::sys::path::append(deployDirectory, "paths");
-wpi::sys::path::append(deployDirectory, "Basic_Turn.wpilib.json");
+wpi::sys::path::append(deployDirectory, "Barrel Racing Path.wpilib.json");
 
 frc::Trajectory exampletrajectory = frc::TrajectoryUtil::FromPathweaverJson(deployDirectory);
 
