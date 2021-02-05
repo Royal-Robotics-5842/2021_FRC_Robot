@@ -37,8 +37,8 @@ DriveSubsystem::DriveSubsystem():
 
 void DriveSubsystem::Periodic() {
   m_odometry.Update(ahrs.GetRotation2d(),
-                    units::meter_t(m_left1.GetSelectedSensorPosition()),
-                    units::meter_t(m_right1.GetSelectedSensorPosition()));
+                    units::meter_t(DriveSubsystem::GetLeftEncoder()),
+                    units::meter_t(DriveSubsystem::GetRightEncoder()));
   // Implementation of subsystem periodic method goes here.
 }
 void DriveSubsystem::ResetEncoders() {
@@ -62,15 +62,15 @@ void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right){
   m_drive.Feed();
 }
 double DriveSubsystem::GetAverageEncoderDistance() {
-  return (m_left1.GetSelectedSensorPosition() + m_right1.GetSelectedSensorPosition())/2;
+  return ((DriveSubsystem::GetLeftEncoder() + DriveSubsystem::GetRightEncoder()/*m_left1.GetSelectedSensorPosition() + m_right1.GetSelectedSensorPosition())*/)/2);
 }
 
 double DriveSubsystem::GetLeftEncoder() {
-  return m_left1.GetSelectedSensorPosition();
+  return m_left1.GetSelectedSensorPosition()*/* Used to calculate units per meter*/((0.1524 * wpi::math::pi)/(2048*18.75));
 }
 
 double DriveSubsystem::GetRightEncoder() {
-  return m_right1.GetSelectedSensorPosition();
+  return m_right1.GetSelectedSensorPosition()*/* Used to calculate units per meter*/((0.1524 * (wpi::math::pi))/(2048*18.75));
 }
 
 void DriveSubsystem::SetMaxOutput(double maxOutput) {
@@ -90,8 +90,8 @@ frc::Pose2d DriveSubsystem::GetPose() {
 }
 
 frc::DifferentialDriveWheelSpeeds DriveSubsystem::GetWheelSpeeds() {
-  return {units::meters_per_second_t(m_left1.GetSelectedSensorVelocity()),
-          units::meters_per_second_t(m_left1.GetSelectedSensorVelocity())};
+  return {units::meters_per_second_t(m_left1.GetSelectedSensorVelocity()*((10*0.1524 * wpi::math::pi)/(2048*18.75))),
+          units::meters_per_second_t(m_left1.GetSelectedSensorVelocity()*((10*0.1524 * wpi::math::pi)/(2048*18.75)))};
 }
 
 void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
