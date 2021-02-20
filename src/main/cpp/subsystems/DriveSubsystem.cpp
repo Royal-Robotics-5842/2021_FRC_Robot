@@ -57,9 +57,9 @@ void DriveSubsystem::TankDriveVolts(units::volt_t left, units::volt_t right){
   m_left2.Set(left);
   m_right1.Set(right);
   m_right2.Set(right);  //Made by Teddy*/
-  m_leftMotors.SetVoltage(left);
+  m_leftMotors.SetVoltage(-left);
   cout<<m_left1.GetMotorOutputVoltage();
-  m_rightMotors.SetVoltage(right);
+  m_rightMotors.SetVoltage(-right);
   cout<<m_right1.GetMotorOutputVoltage();
   m_drive.Feed();
   cout<<"Hello World";
