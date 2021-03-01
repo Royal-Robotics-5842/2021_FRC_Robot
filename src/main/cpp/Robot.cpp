@@ -7,6 +7,10 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
+#include "Subsystems/DriveSubsystem.h"
+
+DriveSubsystem *DriveClass;
+
 void Robot::RobotInit() {}
 
 /**
@@ -63,7 +67,9 @@ void Robot::TeleopPeriodic() {}
 /**
  * This function is called periodically during test mode.
  */
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() {
+  DriveClass->DriveTest();
+}
 
 #ifndef RUNNING_FRC_TESTS
 int main() {

@@ -30,6 +30,27 @@ DriveSubsystem::DriveSubsystem():
   m_left2.SetSensorPhase(true);
   m_right1.SetSensorPhase(true);
   m_right2.SetSensorPhase(true);
+
+  //PID Controller
+  m_left1.Config_kF(0, 0.048927863, 30);
+  m_left1.Config_kP(0, DriveConstants::kPDriveVel, 30);
+  m_left1.ConfigMotionAcceleration(1*38400/(.1524*wpi::math::pi)/10);
+  m_left1.ConfigMotionCruiseVelocity(.5*38400/(.1524*wpi::math::pi)/10);
+  
+  m_left2.Config_kF(0, 0.048927863, 30);
+  m_left2.Config_kP(0, DriveConstants::kPDriveVel, 30);
+  m_left2.ConfigMotionAcceleration(1*38400/(.1524*wpi::math::pi)/10);
+  m_left2.ConfigMotionCruiseVelocity(.5*38400/(.1524*wpi::math::pi)/10);
+
+  m_right1.Config_kF(0, 0.048927863, 30);
+  m_right1.Config_kP(0, DriveConstants::kPDriveVel, 30);
+  m_right1.ConfigMotionAcceleration(1*38400/(.1524*wpi::math::pi)/10);
+  m_right1.ConfigMotionCruiseVelocity(.5*38400/(.1524*wpi::math::pi)/10);
+
+  m_right2.Config_kF(0, 0.048927863, 30);
+  m_right2.Config_kP(0, DriveConstants::kPDriveVel, 30);
+  m_right2.ConfigMotionAcceleration(1*38400/(.1524*wpi::math::pi)/10);
+  m_right2.ConfigMotionCruiseVelocity(.5*38400/(.1524*wpi::math::pi)/10);
   //ahrs = new AHRS(SPI::Port::kMXP);
 
   ResetEncoders();
@@ -98,3 +119,10 @@ void DriveSubsystem::ResetOdometry(frc::Pose2d pose) {
   ResetEncoders();
   m_odometry.ResetPosition(pose, ahrs.GetRotation2d());
 } 
+void DriveSubsystem::DriveTest()
+{
+  m_left1.Set(ControlMode::Velocity,0);
+  m_left2.Set(ControlMode::Velocity,0);
+  m_right1.Set(ControlMode::Velocity,0);
+  m_right2.Set(ControlMode::Velocity,0); 
+}

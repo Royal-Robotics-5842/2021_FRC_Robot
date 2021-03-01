@@ -40,7 +40,7 @@ constexpr double kEncoderDistancePerPulse =  //FIX
 // robot.
 constexpr auto ks = 0.488_V;
 constexpr auto kv = 4.14 * 1_V * 1_s / 1_m;
-constexpr auto ka = 0.275 * 1_V * 1_s * 1_s / 1_m;
+constexpr auto ka = 0.275 * 1_V * 1_s * 1_s / 1_m; 
 
 // Example value only - as above, this must be tuned for your drive!
 constexpr double kPDriveVel = 8.5;

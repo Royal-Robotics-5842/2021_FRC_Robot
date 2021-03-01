@@ -41,11 +41,11 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
-
+  DriveSubsystem m_Drivesubsystem;
 
  private:
   // The robot's subsystems and commands are defined here...
-  DriveSubsystem m_Drivesubsystem;
+  //DriveSubsystem m_Drivesubsystem;
   ExampleCommand m_autonomousCommand;
   XboxController *Controller1;
   XboxController *Controller2;

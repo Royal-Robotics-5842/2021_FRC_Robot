@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/ADXRS450_Gyro.h>
+//#include <frc/ADXRS450_Gyro.h>
 //#include <frc/Encoder.h>
 #include <ctre/Phoenix.h>
 #include <frc/SpeedControllerGroup.h>
@@ -36,6 +36,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
   void TankDriveVolts(units::volt_t left, units::volt_t right);
 void TankDrive(double left, double right);
   void ResetEncoders();
+  void DriveTest();
 
   /**
    * Gets the average distance of the TWO encoders.
