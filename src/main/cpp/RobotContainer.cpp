@@ -47,8 +47,8 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
   config.AddConstraint(autoVoltageConstraint);
 
   // An example trajectory to follow.  All units in meters.
-// wpi::SmallString<64> deployDirectory;
-// frc::filesystem::GetDeployDirectory(deployDirectory);
+ wpi::SmallString<64> deployDirectory;
+frc::filesystem::GetDeployDirectory(deployDirectory);
 // wpi::sys::path::append(deployDirectory, "paths");
 // wpi::sys::path::append(deployDirectory,  "tiny.wpilib.json");
 

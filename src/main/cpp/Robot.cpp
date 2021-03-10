@@ -7,7 +7,16 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
-void Robot::RobotInit() {}
+#include "subsystems/Intake.h"
+
+Intake * IntakeClass;
+RobotContainer * Container;
+
+void Robot::RobotInit() {
+  IntakeClass = new Intake();
+
+  IntakeClass->InitIntake();
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -58,7 +67,9 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  IntakeClass->RunIntake(Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand),Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+}
 
 /**
  * This function is called periodically during test mode.
