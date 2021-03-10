@@ -7,15 +7,15 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
 
-#include "subsystems/Intake.h"
+//#include "subsystems/Intake.h"
 
-Intake * IntakeClass;
-RobotContainer * Container;
+//Intake * IntakeClass;
+//RobotContainer * Container;
 
 void Robot::RobotInit() {
-  IntakeClass = new Intake();
+ // IntakeClass = new Intake();
 
-  IntakeClass->InitIntake();
+ // IntakeClass->InitIntake();
 }
 
 /**
@@ -68,7 +68,7 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  IntakeClass->RunIntake(Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand),Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+  //IntakeClass->RunIntake(Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand),Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
 }
 
 /**
