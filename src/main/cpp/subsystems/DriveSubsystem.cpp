@@ -18,10 +18,10 @@ DriveSubsystem::DriveSubsystem():
   // Set the distance per pulse for the encoders
   //m_leftEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
  // m_rightEncoder.SetDistancePerPulse(kEncoderDistancePerPulse);
-  m_left2.SetInverted(false);
-  m_left1.SetInverted(false);
-  m_right1.SetInverted(true);
-  m_right2.SetInverted(true);
+  m_left2.SetInverted(true);
+  m_left1.SetInverted(true);
+  m_right1.SetInverted(false);
+  m_right2.SetInverted(false);
   m_left1.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
   m_left2.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);
   m_right1.ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor,0,30);

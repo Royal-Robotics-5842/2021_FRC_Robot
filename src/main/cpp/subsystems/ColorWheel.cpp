@@ -1,7 +1,7 @@
 #include "subsystems/ColorWheel.h"
 Color::Color()
 {
-    ColorMotor = new VictorSPX(62);
+    ColorMotor = new VictorSPX(7);
 }
 void Color::runColorWheel(double forward, double reverse)
 {

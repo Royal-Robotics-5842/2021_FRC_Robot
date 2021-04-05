@@ -11,7 +11,8 @@ class Turret
  public:
      Turret();
      void runTurret(double,double);
-     void autoturret();
+     void autoRotate(bool button);
+     int readytoshoot;
  private:
      VictorSPX * TurretMotor;
      

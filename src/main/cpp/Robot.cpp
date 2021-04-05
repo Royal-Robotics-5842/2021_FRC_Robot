@@ -98,6 +98,7 @@ void Robot::TeleopPeriodic() {
   ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
   PneumaticClass->pColor(controllerClass->bAButtonRawC1);
   PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
+  TurretClass->autoRotate(controllerClass->bStartButtonC1);
 }
 
 /**

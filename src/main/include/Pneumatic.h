@@ -13,6 +13,11 @@ public:
     void pIntake(bool, bool);
     void pColor(double);
 private:
+    //Compressor* pCompressor;
+    //Solenoid* colorWheelSingle;
+    frc::Solenoid Intake{0};
+    frc::Solenoid colorWheelSingle{7};
+   
 
 };
 
