@@ -10,24 +10,24 @@ using namespace frc2;
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_Drivesubsystem) {
   // Initialize all of your commands and subsystems here
-  Controller1 = new XboxController(0);
-  Controller2 = new XboxController(1);
   
- // m_subsystem = new DriveSubsystem();
+  
+ // m_Drivesubsystem*new DriveSubsystem();
 
   // Configure the button bindings
-  ConfigureButtonBindings();
+//   ConfigureButtonBindings();
 
-  m_Drivesubsystem.SetDefaultCommand(frc2::RunCommand(
-      [this] {
-        m_Drivesubsystem.TankDrive(
-            Controller1->GetY(frc::GenericHID::kLeftHand),
-            Controller1->GetY(frc::GenericHID::kRightHand));
-      },
-      {&m_Drivesubsystem}));
-}
+// //   m_Drivesubsystem.SetDefaultCommand(frc2::RunCommand(
+// //       [this] {
+// //         m_Drivesubsystem.TankDrive(
+// //             Controller1->GetY(frc::GenericHID::kLeftHand),
+// //             ControllerClass::dRightStickYC1
+// //            );
+// //       },
+// //       {&m_Drivesubsystem}));
+// }
 
-void RobotContainer::ConfigureButtonBindings() {
+// void RobotContainer::ConfigureButtonBindings() {
   
 } 
 
@@ -57,9 +57,9 @@ auto exampletrajectory = frc::TrajectoryGenerator::GenerateTrajectory(
  // Start at the origin facing the +X direction
   frc::Pose2d(0_m, 0_m, frc::Rotation2d(0_deg)),
  // Pass through these two interior waypoints, making an 's' curve path
- {frc::Translation2d(1_m, 0_m), frc::Translation2d(2_m, 0_m)},
+ {frc::Translation2d(2_m, 5_m), frc::Translation2d(3_m, -5_m)},
  // End 3 meters straight ahead of where we started, facing forward
- frc::Pose2d(2_m, 0_m, frc::Rotation2d(0_deg)),
+ frc::Pose2d(4_m, 0_m, frc::Rotation2d(0_deg)),
  // Pass the config
  config);
 

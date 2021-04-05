@@ -6,16 +6,32 @@
 //Progamers are cool
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
-
-//#include "subsystems/Intake.h"
-
-//Intake * IntakeClass;
-//RobotContainer * Container;
-
+#include "subsystems/ColorWheel.h"
+#include "ControllerClass.h"
+#include "subsystems/Feeder.h"
+#include "subsystems/TurretRing.h"
+#include "subsystems/Shooter.h"
+#include "subsystems/Intake.h"
+#include "subsystems/Spindexer.h"
+#include "RobotContainer.h"
+Color * ColorClass;
+Feeder * FeederClass;
+Turret * TurretClass;
+Shooter * ShooterClass;
+Spindexer * spindexerClass;
+Intake * IntakeClass;
+ControllerClass *controllerClass;
+DriveSubsystem* driveSubsystem;
 void Robot::RobotInit() {
- // IntakeClass = new Intake();
-
- // IntakeClass->InitIntake();
+  ColorClass = new  Color();
+  FeederClass = new Feeder();
+  TurretClass = new Turret();
+  ShooterClass = new Shooter();
+  spindexerClass = new Spindexer();
+  driveSubsystem = new DriveSubsystem();
+  IntakeClass = new Intake();
+  controllerClass = new ControllerClass;
+  IntakeClass->InitIntake();
 }
 
 /**
@@ -68,7 +84,14 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  //IntakeClass->RunIntake(Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kLeftHand),Container->Controller1->GetTriggerAxis(frc::GenericHID::JoystickHand::kRightHand));
+  controllerClass->Update();
+  FeederClass->runFeeder(controllerClass->bXButtonPressedC1, controllerClass->bYButtonPressedC1);
+  TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
+  ShooterClass->runShooter(controllerClass->dLeftTriggerC1, controllerClass->dRightTriggerC1);
+  IntakeClass->RunIntake(controllerClass->bStartButtonC1, controllerClass->bBackButtonPressedC1);
+  driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
+  spindexerClass->runSpindexer(controllerClass->bAButtonPressedC1, controllerClass->bBButtonPressedC1);
+  ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
 }
 
 /**
