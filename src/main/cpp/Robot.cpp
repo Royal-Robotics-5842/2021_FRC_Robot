@@ -4,16 +4,9 @@
 
 #include "Robot.h"
 //Progamers are cool
+#include "Subsystems/DriveSubsystem.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
-<<<<<<< HEAD
-
-#include "Subsystems/DriveSubsystem.h"
-
-DriveSubsystem *DriveClass;
-
-void Robot::RobotInit() {}
-=======
 #include "subsystems/ColorWheel.h"
 #include "ControllerClass.h"
 #include "subsystems/Feeder.h"
@@ -22,12 +15,14 @@ void Robot::RobotInit() {}
 #include "subsystems/Intake.h"
 #include "subsystems/Spindexer.h"
 #include "RobotContainer.h"
+#include "Pneumatic.h"
 Color * ColorClass;
 Feeder * FeederClass;
 Turret * TurretClass;
 Shooter * ShooterClass;
 Spindexer * spindexerClass;
 Intake * IntakeClass;
+Pneumatics * PneumaticClass;
 ControllerClass *controllerClass;
 DriveSubsystem* driveSubsystem;
 void Robot::RobotInit() {
@@ -38,10 +33,10 @@ void Robot::RobotInit() {
   spindexerClass = new Spindexer();
   driveSubsystem = new DriveSubsystem();
   IntakeClass = new Intake();
+  PneumaticClass = new Pneumatics();
   controllerClass = new ControllerClass;
   IntakeClass->InitIntake();
 }
->>>>>>> e54c71259d829888ed69d02d4547df465d39b2dd
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -101,13 +96,15 @@ void Robot::TeleopPeriodic() {
   driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
   spindexerClass->runSpindexer(controllerClass->bAButtonPressedC1, controllerClass->bBButtonPressedC1);
   ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
+  PneumaticClass->pColor(controllerClass->bAButtonRawC1);
+  PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
 }
 
 /**
  * This function is called periodically during test mode.
  */
 void Robot::TestPeriodic() {
-  DriveClass->DriveTest();
+  //DriveClass->DriveTest();
 }
 
 #ifndef RUNNING_FRC_TESTS
