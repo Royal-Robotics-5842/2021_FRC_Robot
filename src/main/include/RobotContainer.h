@@ -7,10 +7,10 @@
 #include <frc2/command/Command.h>
 #include <utility>
 #include "Constants.h"
-//#include <units/units.h>
+#include <units/units.h>
 #include "commands/ExampleCommand.h"
 #include "subsystems/DriveSubsystem.h"
-#include <frc/XboxController.h>
+// #include <frc/XboxController.h>
 #include <frc/controller/PIDController.h>
 #include <frc/controller/RamseteController.h>
 #include <frc/shuffleboard/Shuffleboard.h>
@@ -41,17 +41,20 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
+<<<<<<< HEAD
   DriveSubsystem m_Drivesubsystem;
+=======
+  
+>>>>>>> e54c71259d829888ed69d02d4547df465d39b2dd
 
  private:
   // The robot's subsystems and commands are defined here...
   //DriveSubsystem m_Drivesubsystem;
   ExampleCommand m_autonomousCommand;
-  XboxController *Controller1;
-  XboxController *Controller2;
 
 
 
 
-  void ConfigureButtonBindings();
+
+  //void ConfigureButtonBindings();
 };

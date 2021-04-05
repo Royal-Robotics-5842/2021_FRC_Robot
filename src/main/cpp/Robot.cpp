@@ -6,12 +6,42 @@
 //Progamers are cool
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
+<<<<<<< HEAD
 
 #include "Subsystems/DriveSubsystem.h"
 
 DriveSubsystem *DriveClass;
 
 void Robot::RobotInit() {}
+=======
+#include "subsystems/ColorWheel.h"
+#include "ControllerClass.h"
+#include "subsystems/Feeder.h"
+#include "subsystems/TurretRing.h"
+#include "subsystems/Shooter.h"
+#include "subsystems/Intake.h"
+#include "subsystems/Spindexer.h"
+#include "RobotContainer.h"
+Color * ColorClass;
+Feeder * FeederClass;
+Turret * TurretClass;
+Shooter * ShooterClass;
+Spindexer * spindexerClass;
+Intake * IntakeClass;
+ControllerClass *controllerClass;
+DriveSubsystem* driveSubsystem;
+void Robot::RobotInit() {
+  ColorClass = new  Color();
+  FeederClass = new Feeder();
+  TurretClass = new Turret();
+  ShooterClass = new Shooter();
+  spindexerClass = new Spindexer();
+  driveSubsystem = new DriveSubsystem();
+  IntakeClass = new Intake();
+  controllerClass = new ControllerClass;
+  IntakeClass->InitIntake();
+}
+>>>>>>> e54c71259d829888ed69d02d4547df465d39b2dd
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -62,7 +92,16 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  controllerClass->Update();
+  FeederClass->runFeeder(controllerClass->bXButtonPressedC1, controllerClass->bYButtonPressedC1);
+  TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
+  ShooterClass->runShooter(controllerClass->dLeftTriggerC1, controllerClass->dRightTriggerC1);
+  IntakeClass->RunIntake(controllerClass->bStartButtonC1, controllerClass->bBackButtonPressedC1);
+  driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
+  spindexerClass->runSpindexer(controllerClass->bAButtonPressedC1, controllerClass->bBButtonPressedC1);
+  ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
+}
 
 /**
  * This function is called periodically during test mode.

@@ -43,19 +43,19 @@ constexpr auto kv = 4.14 * 1_V * 1_s / 1_m;
 constexpr auto ka = 0.275 * 1_V * 1_s * 1_s / 1_m; 
 
 // Example value only - as above, this must be tuned for your drive!
-constexpr double kPDriveVel = 8.5;
+constexpr double kPDriveVel = 0.24;
 }  // namespace DriveConstants
 
 namespace AutoConstants {
-constexpr auto kMaxSpeed = 2_mps;
-constexpr auto kMaxAcceleration = 1_mps_sq;
+constexpr auto kMaxSpeed = 5_mps;
+constexpr auto kMaxAcceleration = 2.5_mps_sq;
 
 // Reasonable baseline values for a RAMSETE follower in units of meters and
 // seconds
-constexpr double kRamseteB = 2;
+constexpr double kRamseteB = 2.0;
 constexpr double kRamseteZeta = 0.7;
 }  // namespace AutoConstants
 
 namespace OIConstants {
-constexpr int kDriverControllerPort = 1;
+constexpr int kDriverControllerPort = 0;
 }  // namespace OIConstants
