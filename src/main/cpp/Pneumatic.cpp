@@ -11,7 +11,7 @@ using namespace frc;
 
 Pneumatics::Pneumatics()
 {
-   pCompressor->Start();
+  // pCompressor->Start();
 }
 void Pneumatics::pColor(double ColorControl)
 {
