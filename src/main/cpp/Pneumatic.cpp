@@ -11,10 +11,11 @@ using namespace frc;
 
 Pneumatics::Pneumatics()
 {
-   
+   pCompressor->Start();
 }
 void Pneumatics::pColor(double ColorControl)
 {
+    pCompressor->Start();
     if((ColorControl == 1) && (Color==0))
     {
         colorWheelSingle.Set(true);
@@ -29,6 +30,7 @@ void Pneumatics::pColor(double ColorControl)
 }
 void Pneumatics::pIntake(bool ArmOut,bool ArmIn)
 {
+    pCompressor->Start();
     if (ArmOut)
     {
         Intake.Set(true);
