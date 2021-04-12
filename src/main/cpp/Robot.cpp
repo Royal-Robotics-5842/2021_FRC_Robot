@@ -16,9 +16,10 @@
 #include "subsystems/Spindexer.h"
 #include "RobotContainer.h"
 #include "Pneumatic.h"
-#include "subsystems/delete.h"
+//#include "subsystems/delete.h"
 #include "limelight.h"
-easyshot *cool;
+//double speed = 0;
+//easyshot *cool;
 Color * ColorClass;
 Feeder * FeederClass;
 Turret * TurretClass;
@@ -39,10 +40,11 @@ void Robot::RobotInit() {
   IntakeClass = new Intake();
   PneumaticClass = new Pneumatics();
   controllerClass = new ControllerClass();
-  cool = new easyshot();
+ // cool = new easyshot();
   Camera = new limelight();
   IntakeClass->InitIntake();
   ShooterClass->initMotors();
+  //cool->initeasyshot();
 }
 
 /**
@@ -98,16 +100,16 @@ void Robot::TeleopPeriodic() {
   Camera->updateLimelight();
   controllerClass->Update();
   driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
-  FeederClass->runFeeder(controllerClass->bXButtonPressedC1, controllerClass->bYButtonPressedC1);
-  TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
+  FeederClass->runFeeder(controllerClass->dLeftStickYC1);//, controllerClass->bYButtonPressedC1);
+  //TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
   ShooterClass->runShooter(controllerClass->dLeftTriggerC1, controllerClass->dRightTriggerC1);
-  IntakeClass->RunIntake(controllerClass->bStartButtonC1, controllerClass->bBackButtonPressedC1);
-  spindexerClass->runSpindexer(controllerClass->bAButtonPressedC1, controllerClass->bBButtonPressedC1);
+  IntakeClass->RunIntake(controllerClass->dRightStickYC1);//, controllerClass->bBackButtonPressedC1);
+  spindexerClass->runSpindexer(controllerClass->dLeftStickYC1);// controllerClass->bBButtonPressedC1);
   //ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
   //PneumaticClass->pColor(controllerClass->bAButtonRawC1);
   PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
   TurretClass->autoRotate(controllerClass->bStartButtonC1);
-  cool->
+  //cool->everything(0,0);
 }
 
 /**

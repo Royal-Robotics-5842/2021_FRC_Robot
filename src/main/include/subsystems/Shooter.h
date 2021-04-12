@@ -13,7 +13,9 @@ class Shooter
      void runShooter(double,double);
      void initMotors();
      void coolShot(double);
+     double speed = 0;
  private:
       TalonFX * Shooter1;
       TalonFX * Shooter2;
+      
 };

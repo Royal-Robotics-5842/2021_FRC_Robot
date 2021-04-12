@@ -10,7 +10,7 @@ class Feeder
 {
  public:
      Feeder();
-     void runFeeder(double,double);
+     void runFeeder(double);
  private:
      VictorSPX * FeederMotor;
 };

@@ -20,7 +20,7 @@ void easyshot::everything(bool fire, double distance)
     {
     
     twist->autoRotate(1);
-    spin->runSpindexer(1,0);
+    spin->runSpindexer(1);//,0);
 
     }
     

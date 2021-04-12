@@ -4,9 +4,9 @@ Feeder::Feeder()
 {
     FeederMotor = new VictorSPX(3);
 }
-void Feeder::runFeeder(double forward, double reverse)
+void Feeder::runFeeder(double forward)
 {
-     if(forward>.1)
+    /* if(forward>.1)
     {
         FeederMotor->Set(ControlMode::PercentOutput,100);
     }
@@ -17,5 +17,6 @@ void Feeder::runFeeder(double forward, double reverse)
     else
     {
         FeederMotor->Set(ControlMode::PercentOutput,0);
-    }
+    }*/
+    FeederMotor->Set(ControlMode::PercentOutput, forward);
 }

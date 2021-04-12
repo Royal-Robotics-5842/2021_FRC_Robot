@@ -15,7 +15,7 @@ private:
 public:
     Intake(/* args */);
     void InitIntake();
-    void RunIntake(double,double);
+    void RunIntake(double);//,double);
     
 };
 

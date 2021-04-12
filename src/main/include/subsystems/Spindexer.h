@@ -11,7 +11,7 @@ class Spindexer
  public:
      Spindexer();
      void initSpindexer();
-     void runSpindexer(double,double);
+     void runSpindexer(double);//,double);
 
  private:
  VictorSPX * SpindexerMotor;

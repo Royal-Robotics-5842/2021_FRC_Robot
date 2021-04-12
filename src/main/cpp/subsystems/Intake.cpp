@@ -9,9 +9,10 @@ void Intake::InitIntake()
     IntakeMotor->SetInverted(false);
     IntakeMotor->SetNeutralMode(NeutralMode::Brake);
 }
-void Intake::RunIntake(double forward, double reverse)
+void Intake::RunIntake(double forward)//, double reverse)
 {
-    if(forward>.1)
+    IntakeMotor->Set(ControlMode::PercentOutput, forward);
+    /*if(forward>.1)
     {
         IntakeMotor->Set(ControlMode::PercentOutput,100);
     }
@@ -22,7 +23,7 @@ void Intake::RunIntake(double forward, double reverse)
     else
     {
         IntakeMotor->Set(ControlMode::PercentOutput,0);
-    }
+    }*/
     
 
 }

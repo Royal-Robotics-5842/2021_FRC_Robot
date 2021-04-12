@@ -5,7 +5,7 @@ Shooter::Shooter()
     Shooter1 = new TalonFX(61);
     Shooter2 = new TalonFX(62);
 }
-Shooter::initMotors()
+void Shooter::initMotors()
 {
     Shooter1->ConfigFactoryDefault();
     Shooter2->ConfigFactoryDefault();
@@ -18,7 +18,22 @@ Shooter::initMotors()
 
 void Shooter::runShooter(double forward, double reverse)
 {
-   if(forward>.1)
+    
+    if (forward == 1)
+    {
+        speed = speed + .05;
+    }
+    else if(reverse == 1)
+    {
+        speed = speed - 0.05;
+    }
+    else
+    {
+        Shooter1->Set(ControlMode::PercentOutput,speed);
+    }
+    
+    
+   /*if(forward>.1)
     {
         Shooter1->Set(ControlMode::PercentOutput,5);
         //Shooter2->Set(ControlMode::PercentOutput,5);
@@ -32,7 +47,7 @@ void Shooter::runShooter(double forward, double reverse)
     {
         Shooter1->Set(ControlMode::PercentOutput,0);
         //Shooter2->Set(ControlMode::PercentOutput,0);
-    }
+    }*/
 }
 void Shooter::coolShot(double distance)
 {

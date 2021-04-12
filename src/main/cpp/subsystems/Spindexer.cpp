@@ -6,8 +6,10 @@ Spindexer::Spindexer(){
 void Spindexer::initSpindexer(){
     SpindexerMotor->SetInverted(false);
 }
-void Spindexer::runSpindexer(double forward, double reverse)
+void Spindexer::runSpindexer(double forward)//, double reverse)
 {
+    SpindexerMotor->Set(ControlMode::PercentOutput, forward);
+    /*
     if(forward>.1)
     {
         SpindexerMotor->Set(ControlMode::PercentOutput,100);
@@ -19,7 +21,7 @@ void Spindexer::runSpindexer(double forward, double reverse)
     else
     {
         SpindexerMotor->Set(ControlMode::PercentOutput,0);
-    }
+    }*/
     
 
 }
