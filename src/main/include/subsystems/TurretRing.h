@@ -2,6 +2,7 @@
 
 #include <ctre/Phoenix.h>
 #include <iostream>
+#include "limelight.h"
 
 using namespace std;
 using namespace frc;

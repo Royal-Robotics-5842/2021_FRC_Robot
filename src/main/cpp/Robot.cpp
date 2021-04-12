@@ -16,6 +16,9 @@
 #include "subsystems/Spindexer.h"
 #include "RobotContainer.h"
 #include "Pneumatic.h"
+#include "subsystems/delete.h"
+#include "limelight.h"
+easyshot *cool;
 Color * ColorClass;
 Feeder * FeederClass;
 Turret * TurretClass;
@@ -25,6 +28,7 @@ Intake * IntakeClass;
 Pneumatics * PneumaticClass;
 ControllerClass *controllerClass;
 DriveSubsystem* driveSubsystem;
+limelight *Camera;
 void Robot::RobotInit() {
   ColorClass = new  Color();
   FeederClass = new Feeder();
@@ -34,8 +38,11 @@ void Robot::RobotInit() {
   driveSubsystem = new DriveSubsystem();
   IntakeClass = new Intake();
   PneumaticClass = new Pneumatics();
-  controllerClass = new ControllerClass;
+  controllerClass = new ControllerClass();
+  cool = new easyshot();
+  Camera = new limelight();
   IntakeClass->InitIntake();
+  ShooterClass->initMotors();
 }
 
 /**
@@ -88,17 +95,19 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
+  Camera->updateLimelight();
   controllerClass->Update();
+  driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
   FeederClass->runFeeder(controllerClass->bXButtonPressedC1, controllerClass->bYButtonPressedC1);
   TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
   ShooterClass->runShooter(controllerClass->dLeftTriggerC1, controllerClass->dRightTriggerC1);
   IntakeClass->RunIntake(controllerClass->bStartButtonC1, controllerClass->bBackButtonPressedC1);
-  driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
   spindexerClass->runSpindexer(controllerClass->bAButtonPressedC1, controllerClass->bBButtonPressedC1);
-  ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
-  PneumaticClass->pColor(controllerClass->bAButtonRawC1);
+  //ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
+  //PneumaticClass->pColor(controllerClass->bAButtonRawC1);
   PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
   TurretClass->autoRotate(controllerClass->bStartButtonC1);
+  cool->
 }
 
 /**

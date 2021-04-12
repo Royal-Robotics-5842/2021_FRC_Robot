@@ -6,7 +6,7 @@ using namespace std;
 #define rotatePort 5
 #define tracking 1
 #define drive 2
-
+limelight * camera;
 float Kp = -0.1f;
 float min_command = 0.05f;
 
@@ -14,6 +14,8 @@ Turret::Turret()
 {
     TurretMotor = new VictorSPX(5);
     readytoshoot = 0;
+    camera = new limelight();
+    camera->setPipeline(drive);
 }
 void Turret::runTurret(double forward, double reverse)
 {
@@ -34,18 +36,22 @@ void Turret::autoRotate(bool button)
 {
     if(button == 1)
     {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline",tracking);
-        if(nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0) == 1)
+        //nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline",tracking);
+        camera->setPipeline(tracking);
+        if(readytoshoot = 0)
         {
-            float heading_error = -(nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0));
+            
+        if(/*nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0) */ camera->tv == 1)
+        {
+            float heading_error = -(/*nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)*/camera->tx);
             float steering_adjust = 0.0f;
-            if(nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0) > 1)  //aka the robot is to the left of the target
+            if(/*nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)*/camera->tx > .5)  //aka the robot is to the left of the target
             {
                 steering_adjust = Kp*heading_error - min_command;
                 cout<<"Should Turn Right"<<endl<<"Motor Output: "<<steering_adjust<<endl;
                 TurretMotor->Set(ControlMode::PercentOutput,steering_adjust);
             }   
-            else if (nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0) < 1)
+            else if (/*nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tx",0.0)*/camera->tx < -.5)
             {
                 steering_adjust = Kp*heading_error + min_command;
                 TurretMotor->Set(ControlMode::PercentOutput,steering_adjust);
@@ -57,18 +63,20 @@ void Turret::autoRotate(bool button)
                 //return true;
                 readytoshoot = 1;
             }
+        }
                                
         }
-        else
+        else if(/*nt::NetworkTableInstance::GetDefault().GetTable("limelight")->GetNumber("tv",0.0)*/camera->tv == 0)
         {
             cout<<"No Target Fount :("<<endl;
             //return false;
-            readytoshoot = 0;
+            //readytoshoot = 0;
         }
         
     }
     else
     {
-        nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline",drive);
+        //nt::NetworkTableInstance::GetDefault().GetTable("limelight")->PutNumber("pipeline",drive);
+        camera->setPipeline(drive);
     }
 }
