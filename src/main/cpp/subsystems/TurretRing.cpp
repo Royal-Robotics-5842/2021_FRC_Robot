@@ -19,7 +19,7 @@ Turret::Turret()
 }
 void Turret::runTurret(double forward, double reverse)
 {
-    if(forward>.1)
+    /*if(forward>.1)
     {
         TurretMotor->Set(ControlMode::PercentOutput,100);
     }
@@ -30,7 +30,8 @@ void Turret::runTurret(double forward, double reverse)
     else
     {
         TurretMotor->Set(ControlMode::PercentOutput,0);
-    }
+    }*/
+    TurretMotor->Set(ControlMode::PercentOutput,forward);
 }
 void Turret::autoRotate(bool button)
 {

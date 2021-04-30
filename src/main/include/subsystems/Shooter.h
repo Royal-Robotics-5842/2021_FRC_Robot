@@ -10,7 +10,7 @@ class Shooter
 {
  public:
      Shooter();
-     void runShooter(double,double);
+     void runShooter(double,double,double);
      void initMotors();
      void coolShot(double);
      double speed = 0;

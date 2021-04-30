@@ -1,7 +1,7 @@
 #pragma once
-#include "frc/Compressor.h"
+//#include "frc/Compressor.h"
 #include "frc/Solenoid.h"
-#include "frc/DoubleSolenoid.h"
+//#include "frc/DoubleSolenoid.h"
 #include <iostream>
 
 using namespace frc;
@@ -11,12 +11,13 @@ class Pneumatics
 public:
     Pneumatics();
     void pIntake(bool, bool);
-    void pColor(double);
+    void pColor(double, double);
+  //  bool Color;
 private:
-    Compressor * pCompressor;
+    //Compressor * pCompressor;
     //Solenoid* colorWheelSingle;
-    frc::Solenoid Intake{0};
-    frc::Solenoid colorWheelSingle{7};
+    Solenoid * Intake;
+    Solenoid * colorWheelSingle;
    
 
 };

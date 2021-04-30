@@ -17,7 +17,7 @@
 #include "RobotContainer.h"
 #include "Pneumatic.h"
 //#include "subsystems/delete.h"
-#include "limelight.h"
+//#include "limelight.h"
 //double speed = 0;
 //easyshot *cool;
 Color * ColorClass;
@@ -29,7 +29,7 @@ Intake * IntakeClass;
 Pneumatics * PneumaticClass;
 ControllerClass *controllerClass;
 DriveSubsystem* driveSubsystem;
-limelight *Camera;
+//limelight *Camera;
 void Robot::RobotInit() {
   ColorClass = new  Color();
   FeederClass = new Feeder();
@@ -41,7 +41,7 @@ void Robot::RobotInit() {
   PneumaticClass = new Pneumatics();
   controllerClass = new ControllerClass();
  // cool = new easyshot();
-  Camera = new limelight();
+  //Camera = new limelight();
   IntakeClass->InitIntake();
   ShooterClass->initMotors();
   //cool->initeasyshot();
@@ -97,18 +97,18 @@ void Robot::TeleopInit() {
  * This function is called periodically during operator control.
  */
 void Robot::TeleopPeriodic() {
-  Camera->updateLimelight();
+  //Camera->updateLimelight();
   controllerClass->Update();
   driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
-  FeederClass->runFeeder(controllerClass->dLeftStickYC1);//, controllerClass->bYButtonPressedC1);
-  //TurretClass->runTurret(controllerClass->bLeftBumperC1, controllerClass->bRightBumperC1);
-  ShooterClass->runShooter(controllerClass->dLeftTriggerC1, controllerClass->dRightTriggerC1);
-  IntakeClass->RunIntake(controllerClass->dRightStickYC1);//, controllerClass->bBackButtonPressedC1);
-  spindexerClass->runSpindexer(controllerClass->dLeftStickYC1);// controllerClass->bBButtonPressedC1);
+  FeederClass->runFeeder(-1*controllerClass->dLeftStickYC2);//, controllerClass->bYButtonPressedC1);
+  TurretClass->runTurret(controllerClass->dLeftStickXC2, 0);
+  ShooterClass->runShooter(controllerClass->bBackButtonC2, controllerClass->bStartButtonC2,controllerClass->bXButtonRawC2);
+  IntakeClass->RunIntake(-1*controllerClass->dRightStickYC2);//, controllerClass->bBackButtonPressedC1);
+  spindexerClass->runSpindexer(controllerClass->dLeftStickYC2);// controllerClass->bBButtonPressedC1);
   //ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
-  //PneumaticClass->pColor(controllerClass->bAButtonRawC1);
+  PneumaticClass->pColor(controllerClass->bAButtonRawC2,controllerClass->bYButtonRawC2);
   PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
-  TurretClass->autoRotate(controllerClass->bStartButtonC1);
+ // TurretClass->autoRotate(controllerClass->bStartButtonC1);
   //cool->everything(0,0);
 }
 
