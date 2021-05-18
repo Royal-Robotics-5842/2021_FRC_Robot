@@ -5,14 +5,16 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-#include <frc/ADXRS450_Gyro.h>
-#include <frc/Encoder.h>
+//#include <frc/ADXRS450_Gyro.h>
+//#include <frc/Encoder.h>
 #include <ctre/Phoenix.h>
 #include <frc/SpeedControllerGroup.h>
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/geometry/Pose2d.h>
 #include <frc/kinematics/DifferentialDriveOdometry.h>
 #include <units/voltage.h>
+#include <AHRS.h>
+//#include <units/units.h>
 
 
 
@@ -32,10 +34,15 @@ class DriveSubsystem : public frc2::SubsystemBase {
    * simulation.
    */
   void TankDriveVolts(units::volt_t left, units::volt_t right);
+<<<<<<< HEAD
   
   void TankDrive(double left, double right);
 
+=======
+void TankDrive(double left, double right);
+>>>>>>> 433f2e24622c48de8d8de344abc926c19a4f2c80
   void ResetEncoders();
+  void DriveTest();
 
   /**
    * Gets the average distance of the TWO encoders.
@@ -49,14 +56,14 @@ class DriveSubsystem : public frc2::SubsystemBase {
    *
    * @return the left drive encoder
    */
-  frc::Encoder& GetLeftEncoder();
+  double GetLeftEncoder();
 
   /**
    * Gets the right drive encoder.
    *
    * @return the right drive encoder
    */
-  frc::Encoder& GetRightEncoder();
+  double GetRightEncoder();
 
   /**
    * Sets the max output of the drive.  Useful for scaling the drive to drive
@@ -106,6 +113,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
   WPI_TalonFX m_left2;
   WPI_TalonFX m_right1;
   WPI_TalonFX m_right2;
+  AHRS ahrs;
 
   // The motors on the left side of the drive
   frc::SpeedControllerGroup m_leftMotors{m_left1, m_left2};
@@ -117,14 +125,14 @@ class DriveSubsystem : public frc2::SubsystemBase {
   frc::DifferentialDrive m_drive{m_leftMotors, m_rightMotors};
 
   // The left-side drive encoder
-  frc::Encoder m_leftEncoder;
+  //frc::Encoder m_leftEncoder;
 
   // The right-side drive encoder
-  frc::Encoder m_rightEncoder;
+  //frc::Encoder m_rightEncoder;
 
-  // The gyro sensor
-  frc::ADXRS450_Gyro m_gyro;
-
+  // The gyro sensor SHOULD NOT USE THIS GYRO, use NAVX as called in DriveSubsystem.cpp
+  //frc::ADXRS450_Gyro m_gyro;
+ 
   // Odometry class for tracking robot pose
   frc::DifferentialDriveOdometry m_odometry;
 };

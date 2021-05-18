@@ -4,10 +4,48 @@
 
 #include "Robot.h"
 //Progamers are cool
+#include "Subsystems/DriveSubsystem.h"
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc2/command/CommandScheduler.h>
-
-void Robot::RobotInit() {}
+#include "subsystems/ColorWheel.h"
+#include "ControllerClass.h"
+#include "subsystems/Feeder.h"
+#include "subsystems/TurretRing.h"
+#include "subsystems/Shooter.h"
+#include "subsystems/Intake.h"
+#include "subsystems/Spindexer.h"
+#include "RobotContainer.h"
+#include "Pneumatic.h"
+//#include "subsystems/delete.h"
+//#include "limelight.h"
+//double speed = 0;
+//easyshot *cool;
+Color * ColorClass;
+Feeder * FeederClass;
+Turret * TurretClass;
+Shooter * ShooterClass;
+Spindexer * spindexerClass;
+Intake * IntakeClass;
+Pneumatics * PneumaticClass;
+ControllerClass *controllerClass;
+DriveSubsystem* driveSubsystem;
+//limelight *Camera;
+void Robot::RobotInit() {
+  ColorClass = new  Color();
+  FeederClass = new Feeder();
+  TurretClass = new Turret();
+  ShooterClass = new Shooter();
+  spindexerClass = new Spindexer();
+  driveSubsystem = new DriveSubsystem();
+  IntakeClass = new Intake();
+  PneumaticClass = new Pneumatics();
+  controllerClass = new ControllerClass();
+ // cool = new easyshot();
+  //Camera = new limelight();
+  IntakeClass->InitIntake();
+  ShooterClass->initMotors();
+  //cool->initeasyshot();
+}
 
 /**
  * This function is called every robot packet, no matter the mode. Use
@@ -58,12 +96,28 @@ void Robot::TeleopInit() {
 /**
  * This function is called periodically during operator control.
  */
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic() {
+  //Camera->updateLimelight();
+  controllerClass->Update();
+  driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
+  FeederClass->runFeeder(-1*controllerClass->dLeftStickYC2);//, controllerClass->bYButtonPressedC1);
+// TurretClass->runTurret(.25*controllerClass->dLeftTriggerC2);
+  ShooterClass->runShooter(controllerClass->bYButtonRawC2, controllerClass->bAButtonRawC2,controllerClass->bXButtonRawC2);
+  IntakeClass->RunIntake(-1*controllerClass->dRightStickYC2);//, controllerClass->bBackButtonPressedC1);
+  spindexerClass->runSpindexer(.62*controllerClass->dLeftStickYC2);// controllerClass->bBButtonPressedC1);
+  //ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
+  //PneumaticClass->pColor(controllerClass->bAButtonRawC2,controllerClass->bYButtonRawC2);
+  PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
+ //TurretClass->autoRotate(controllerClass->bStartButtonC1);
+  //cool->everything(0,0);
+}
 
 /**
  * This function is called periodically during test mode.
  */
-void Robot::TestPeriodic() {}
+void Robot::TestPeriodic() {
+  //DriveClass->DriveTest();
+}
 
 #ifndef RUNNING_FRC_TESTS
 int main() {

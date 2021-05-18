@@ -21,7 +21,11 @@ constexpr int kRightEncoderPorts[]{2, 3};
 constexpr bool kLeftEncoderReversed = false;
 constexpr bool kRightEncoderReversed = true;
 
+<<<<<<< HEAD
 constexpr auto kTrackwidth = 1.6734976523022231_m;
+=======
+constexpr auto kTrackwidth = 0.695325_m;
+>>>>>>> 433f2e24622c48de8d8de344abc926c19a4f2c80
 extern const frc::DifferentialDriveKinematics kDriveKinematics;
 
 constexpr int kEncoderCPR = 2048;
@@ -36,22 +40,31 @@ constexpr double kEncoderDistancePerPulse =  //FIX
 // robot.
 constexpr auto ks = 0.488_V;
 constexpr auto kv = 4.14 * 1_V * 1_s / 1_m;
+<<<<<<< HEAD
 constexpr auto ka = 0.275 * 1_V * 1_s * 1_s / 1_m;
+=======
+constexpr auto ka = 0.275 * 1_V * 1_s * 1_s / 1_m; 
+>>>>>>> 433f2e24622c48de8d8de344abc926c19a4f2c80
 
 // Example value only - as above, this must be tuned for your drive!
-constexpr double kPDriveVel = 8.5;
+constexpr double kPDriveVel = 0.24;
 }  // namespace DriveConstants
 
 namespace AutoConstants {
+<<<<<<< HEAD
 constexpr auto kMaxSpeed = 2_mps;
 constexpr auto kMaxAcceleration = 1_mps_sq;
+=======
+constexpr auto kMaxSpeed = 5_mps;
+constexpr auto kMaxAcceleration = 2.5_mps_sq;
+>>>>>>> 433f2e24622c48de8d8de344abc926c19a4f2c80
 
 // Reasonable baseline values for a RAMSETE follower in units of meters and
 // seconds
-constexpr double kRamseteB = 2;
+constexpr double kRamseteB = 2.0;
 constexpr double kRamseteZeta = 0.7;
 }  // namespace AutoConstants
 
 namespace OIConstants {
-constexpr int kDriverControllerPort = 1;
+constexpr int kDriverControllerPort = 0;
 }  // namespace OIConstants
