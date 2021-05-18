@@ -10,7 +10,7 @@ void Shooter::initMotors()
     Shooter1->ConfigFactoryDefault();
     Shooter2->ConfigFactoryDefault();
     
-    Shooter1->SetInverted(false);
+    Shooter1->SetInverted(true);
     Shooter2->SetInverted(false);
 
     Shooter2->Follow(*Shooter1);
@@ -21,11 +21,10 @@ void Shooter::runShooter(double forward, double reverse,double ESTOP)
     
     if (forward == 1)
     {
-        speed += .05;
-    }
+        speed= 50;    }
     else if(reverse == 1)
     {
-        speed -= 0.05;
+        speed -= -50;
     }
     else if(ESTOP == 1)
     {

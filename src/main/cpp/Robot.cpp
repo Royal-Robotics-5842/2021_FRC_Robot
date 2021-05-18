@@ -101,14 +101,14 @@ void Robot::TeleopPeriodic() {
   controllerClass->Update();
   driveSubsystem->TankDrive(controllerClass->dLeftStickYC1, controllerClass->dRightStickYC1);
   FeederClass->runFeeder(-1*controllerClass->dLeftStickYC2);//, controllerClass->bYButtonPressedC1);
-  TurretClass->runTurret(controllerClass->dLeftStickXC2, 0);
-  ShooterClass->runShooter(controllerClass->bBackButtonC2, controllerClass->bStartButtonC2,controllerClass->bXButtonRawC2);
+// TurretClass->runTurret(.25*controllerClass->dLeftTriggerC2);
+  ShooterClass->runShooter(controllerClass->bYButtonRawC2, controllerClass->bAButtonRawC2,controllerClass->bXButtonRawC2);
   IntakeClass->RunIntake(-1*controllerClass->dRightStickYC2);//, controllerClass->bBackButtonPressedC1);
-  spindexerClass->runSpindexer(controllerClass->dLeftStickYC2);// controllerClass->bBButtonPressedC1);
+  spindexerClass->runSpindexer(.62*controllerClass->dLeftStickYC2);// controllerClass->bBButtonPressedC1);
   //ColorClass->runColorWheel(controllerClass->bAButtonPressedC2, controllerClass->bBButtonPressedC2);
-  PneumaticClass->pColor(controllerClass->bAButtonRawC2,controllerClass->bYButtonRawC2);
+  //PneumaticClass->pColor(controllerClass->bAButtonRawC2,controllerClass->bYButtonRawC2);
   PneumaticClass->pIntake(controllerClass->bLeftBumperC2,controllerClass->bRightBumperC2);
- // TurretClass->autoRotate(controllerClass->bStartButtonC1);
+ //TurretClass->autoRotate(controllerClass->bStartButtonC1);
   //cool->everything(0,0);
 }
 
